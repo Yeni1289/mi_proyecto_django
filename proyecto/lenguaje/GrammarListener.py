@@ -1,6 +1,6 @@
-# Generated from Grammar.g4 by ANTLR 4.9.2
+# Generated from Grammar.g4 by ANTLR 4.13.2
 from antlr4 import *
-if __name__ is not None and "." in __name__:
+if "." in __name__:
     from .GrammarParser import GrammarParser
 else:
     from GrammarParser import GrammarParser
@@ -35,6 +35,15 @@ class GrammarListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by GrammarParser#type.
+    def enterType(self, ctx:GrammarParser.TypeContext):
+        pass
+
+    # Exit a parse tree produced by GrammarParser#type.
+    def exitType(self, ctx:GrammarParser.TypeContext):
+        pass
+
+
     # Enter a parse tree produced by GrammarParser#print.
     def enterPrint(self, ctx:GrammarParser.PrintContext):
         pass
@@ -53,12 +62,12 @@ class GrammarListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by GrammarParser#for_staement.
-    def enterFor_staement(self, ctx:GrammarParser.For_staementContext):
+    # Enter a parse tree produced by GrammarParser#for_statement.
+    def enterFor_statement(self, ctx:GrammarParser.For_statementContext):
         pass
 
-    # Exit a parse tree produced by GrammarParser#for_staement.
-    def exitFor_staement(self, ctx:GrammarParser.For_staementContext):
+    # Exit a parse tree produced by GrammarParser#for_statement.
+    def exitFor_statement(self, ctx:GrammarParser.For_statementContext):
         pass
 
 

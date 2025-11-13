@@ -1,6 +1,6 @@
-# Generated from Grammar.g4 by ANTLR 4.9.2
+# Generated from Grammar.g4 by ANTLR 4.13.2
 from antlr4 import *
-if __name__ is not None and "." in __name__:
+if "." in __name__:
     from .GrammarParser import GrammarParser
 else:
     from GrammarParser import GrammarParser
@@ -24,6 +24,11 @@ class GrammarVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by GrammarParser#type.
+    def visitType(self, ctx:GrammarParser.TypeContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by GrammarParser#print.
     def visitPrint(self, ctx:GrammarParser.PrintContext):
         return self.visitChildren(ctx)
@@ -34,8 +39,8 @@ class GrammarVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by GrammarParser#for_staement.
-    def visitFor_staement(self, ctx:GrammarParser.For_staementContext):
+    # Visit a parse tree produced by GrammarParser#for_statement.
+    def visitFor_statement(self, ctx:GrammarParser.For_statementContext):
         return self.visitChildren(ctx)
 
 

@@ -1,30 +1,42 @@
-from antlr4 import*
-from lenguaje.GrammarLexer import GrammarLexer
-from lenguaje.GrammarParser import GrammarParser
-from lenguaje.MyVisitor import MyVisitor
+from antlr4 import *
+from proyecto.lenguaje.GrammarLexer import GrammarLexer
+from proyecto.lenguaje.GrammarParser import GrammarParser
+#import lenguage.GrammarLexer as GrammarLexer
+#import lenguage.GrammarParser as GrammarParser
+import traceback
 
-import io
+import  io
 import sys
-import json
+#import lenguage.MyVisitor as MyVisitor
+from proyecto.lenguaje.MyVisitor import MyVisitor
 
-#Definimos nuesto metodo para ejecutar las insytrucciones 
+
+
+
 def run_code(code:str):
     input_stream=InputStream(code)
     lexer=GrammarLexer(input_stream)
     stream=CommonTokenStream(lexer)
     parser=GrammarParser(stream)
     tree=parser.program()
+
+    # Capturan la salida 
+    old_stdout=sys.stdout
+    buf = io.StringIO()
+    sys.stdout = buf
     
-    #Captura la salida
-    old_stdout=sys.stdout()
-    buf=io.StringIO()
-    sys=stdout=buf
-    
-    #Creamos un odjecto a nuestro visitor
-    visitor=MyVisitor()
-    #Visitamos el arbol con nuestro visitor
-    visitor.visitor(tree)
-    #Capturamos la salida
-    output=buf.getvalue()
-    
-    return output
+    try:
+        #Creamos un objeto de nuestro visitor
+        visitor = MyVisitor()
+        #Visitamos el arbol con nuestro visitor
+        visitor.visit(tree)
+        # Capturamos la salida
+        output = buf.getvalue()
+        #Retornamos la salida de la operacion
+        return output
+    #Capturamos excepciones
+    except Exception:
+        tb = traceback.format_exc()
+        return tb
+    finally:
+        sys.stdout = old_stdout

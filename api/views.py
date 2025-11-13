@@ -1,4 +1,5 @@
 from rest_framework.decorators import api_view
+from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework import status
 import json
@@ -10,7 +11,7 @@ from .utils import run_code
 @api_view(['POST'])
 def main(request):
     #DEfinimos el metodo de la aplicaion
-    if request!='POST':
+    if request.method!='POST':
         return JsonResponse(
             {'code':""},
             status=405

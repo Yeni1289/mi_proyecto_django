@@ -1,40 +1,52 @@
 grammar Grammar;
 
-program:(if_statement NEWLINE)*EOF;
+program: (statement NEWLINE)* EOF;
 
-statement: assing | print | if_statement | for_staement;
+statement: assing | print | if_statement | for_statement;
 
-/*Definimos la asignacion*/ 
-assing:ID'='expr;
+/* Definimos la asignacion */
+/*assing: ID '=' expr;
 
-/*Definimos print*/ 
-print:'print''('expr')';
+/* Definimos la asignacion con tipo*/
+assing: type ID '=' expr;
 
-/*Definimos if*/ 
-if_statement:'if''('expr')'block;
+/* Definimos los tipos */
+type: 'int' | 'string';
 
-/*Definimos for*/ 
-for_staement:'for''('assing';'expr';'assing')'block;
+/* Definimos print */
+print:'print' '('expr')';
 
-/*Definimos block*/ 
+/* Definimos if */
+if_statement: 'if' '('expr')' block;
 
-block:'{'(statement NEWLINE)*']';
+/* Definimos for */
+for_statement: 'for' '('assing';'expr';'assing')' block;
 
-/*Definimos expr*/
-expr:expr op=('*'|'/')expr
-   | expr op=('+'|'-')expr
-   | expr op=('>'|'<'|'>='|'=<')expr
-   | expr op=('=='|'!=')expr
-   | ID
-   |'('expr')'
-   ;
+/* Definimos block */
+block:'{'(statement NEWLINE)*'}';
 
-/*Definimos de elementos finales*/
+/* Definimos expr */
+expr: expr op=('*'|'/') expr
+        | expr op=('+'|'-') expr
+        | expr op=('>'|'<'|'>='|'<=') expr
+        | expr op=('=='|'!=') expr
+        | ID 
+        /* Definicion de valores numericos  */
+        | NUMBER
+        /* Agregamos string a la expresion */
+        | STRING
+        | '('expr')'
+        ;
 
+/*Definicion de elementos finales*/
 ID:[a-zA-Z][a-zA-Z_0-9]*;
-NEWLINE:[\r\n];
-WS:[\t]->skip;
-SEMI:';';
 
+/*Agregamos reglas para los numeros */
+NUMBER: [0-9]+;
 
+/*Agregamos reglas para el string */
+STRING: '"'(~[ "\r\n])*?'"';
 
+NEWLINE: [\r\n];
+WS: [\t] -> skip;
+SEMI: ';' ;
