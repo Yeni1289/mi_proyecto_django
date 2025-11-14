@@ -60,9 +60,6 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = True
 ROOT_URLCONF='proyecto.urls'
 
-CORS_ALLOW_ORIGINS[
-    ' https://mi-proyecto-django-vuxw.onrender.com'
-]
 
 
 TEMPLATES = [
