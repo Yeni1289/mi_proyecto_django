@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1:5173',
+    'mi-proyecto-django-vuxw.onrender.com',
 ]
 
 
