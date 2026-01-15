@@ -17,9 +17,15 @@ Including another URLconf
 # proyecto/urls.py
 from django.contrib import admin
 from django.urls import path, include
+from django.http import JsonResponse
+
+def home(request):
+    return JsonResponse({"status": "Django funcionando en Vercel 🚀"})
 
 urlpatterns = [
+    path('', home),
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),  # This line should point to 'api.urls'
+    path('api/', include('api.urls')),
 ]
+
 
